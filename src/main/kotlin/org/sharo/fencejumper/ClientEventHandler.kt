@@ -58,7 +58,7 @@ class ClientEventHandler {
 
         @JvmStatic
         private fun getBlock(world: World, pos: BlockPos): Block {
-            return world.getBlockState(pos).block;
+            return world.getBlockState(pos).block
         }
     }
 }
