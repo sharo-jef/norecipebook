@@ -22,9 +22,9 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.3'
-group = 'org.sharo.fencejumper' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'fencejumper'
+version = '1.0'
+group = 'org.sharo.norecipebook' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'norecipebook'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -36,6 +36,7 @@ tasks.withType(Jar) {
 }
 
 minecraft {
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     // The mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   Snapshot are built nightly.
     // stable_#            Stables are built at the discretion of the MCP team.
@@ -145,7 +146,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "fencejumper",
+            "Specification-Title": "norecipebook",
             "Specification-Vendor": "sharo_jef",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,

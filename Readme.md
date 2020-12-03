@@ -1,12 +1,10 @@
-# Fence Jumper
+# No Recipe Book
 
 ## Overview
 
-A simple utility mod that allows jumping over fences and walls without the need for pesky carpet, trap doors, or jump boost.
+**No Recipe Book** removes the Recipe Book icon from the player inventory and the crafting GUI, as well as from other GUIs that have it.
 
-This only applies to players, your farms are safe!
-
-Permissions: You are allowed to use this on servers/in mod packs, no permissions necessary.
+This is a Client Side mod. It does not have to be installed on the Server. If it is installed on the Server, it will do nothing.
 
 ## Details
 
@@ -16,4 +14,4 @@ Permissions: You are allowed to use this on servers/in mod packs, no permissions
 ## Usage
 
 1. Install Minecraft Forge for 1.16.4.
-2. Drop `fencejumper-x.x.jar` into `mods` folder.
+2. Drop `norecipebook-x.x.jar` into `mods` folder.
