@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.api.distmarker.Dist
 
-@EventBusSubscriber(modid = Core.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber
 class ClientEventHandler {
     companion object {
         @JvmStatic
@@ -37,8 +37,8 @@ class ClientEventHandler {
             for (i in 0..3) {
                 for (j in 0..3) {
                     if (
-                        i !== pos.x.toInt()
-                        || j !== pos.z.toInt()
+                        i != pos.x.toInt()
+                        || j != pos.z.toInt()
                     ) {
                         val block = getBlock(
                             player.entityWorld,
