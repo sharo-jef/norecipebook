@@ -13,7 +13,7 @@ import net.minecraft.client.gui.recipebook.RecipeBookGui
 import net.minecraftforge.api.distmarker.Dist
 import org.apache.logging.log4j.LogManager
 
-@EventBusSubscriber(Dist.CLIENT)
+@EventBusSubscriber(Dist.CLIENT, modid = Core.MOD_ID)
 class ClientEventHandler {
     companion object {
         @JvmStatic

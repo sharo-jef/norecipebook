@@ -22,7 +22,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.4-1.0.0'
+version = '1.16.4-1.0.1'
 group = 'org.sharo.norecipebook' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'norecipebook'
 
