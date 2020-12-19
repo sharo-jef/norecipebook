@@ -11,7 +11,6 @@ import net.minecraft.client.gui.screen.inventory.AbstractFurnaceScreen
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.gui.recipebook.RecipeBookGui
 import net.minecraftforge.api.distmarker.Dist
-import org.apache.logging.log4j.LogManager
 
 @EventBusSubscriber(Dist.CLIENT, modid = Core.MOD_ID)
 class ClientEventHandler {
@@ -19,7 +18,7 @@ class ClientEventHandler {
         @JvmStatic
         @SubscribeEvent
         fun onGuiScreenEvent(event: GuiScreenEvent.InitGuiEvent.Post) {
-            val widgets = event.getWidgetList()
+            val widgets = event.widgetList
             for (widget in widgets) {
                 if (widget is ImageButton && widget.visible) {
                     if ("minecraft:textures/gui/recipe_button.png" == widget.resourceLocation.toString()) {
@@ -29,7 +28,7 @@ class ClientEventHandler {
             }
             val screen = event.gui
             if (screen is ContainerScreen<*>) {
-                var widthTooNarrow = when (screen) {
+                val widthTooNarrow = when (screen) {
                 is InventoryScreen ->
                     screen.widthTooNarrow
                 is CraftingScreen ->
@@ -41,28 +40,35 @@ class ClientEventHandler {
                 }
                 var clazz: Class<*> = screen.javaClass
                 while (clazz != Screen::class.java) {
-                    val fields = clazz.getDeclaredFields()
+                    val fields = clazz.declaredFields
                     for (f in fields) {
-                        if (RecipeBookGui::class.java.isAssignableFrom(f.getType())) {
+                        if (RecipeBookGui::class.java.isAssignableFrom(f.type)) {
                             try {
-                                f.setAccessible(true)
+                                f.isAccessible = true
                                 val gui = f.get(screen) as RecipeBookGui?
                                 if (
-                                    gui != null
-                                    && gui.recipeBook != null
-                                    && gui.recipeBookPage != null
-                                    && gui.recipeBookPage.overlay != null
-                                    && gui.isVisible()
+                                    gui?.recipeBook != null
+                                    && gui?.recipeBook != null
                                 ) {
-                                    gui.toggleVisibility()
-                                    screen.guiLeft = gui.updateScreenPosition(widthTooNarrow, screen.width, screen.xSize)
+                                    if (
+                                        gui!!.recipeBookPage != null
+                                        && gui.recipeBookPage.overlay != null
+                                        && gui.isVisible
+                                    ) {
+                                        gui.toggleVisibility()
+                                        screen.guiLeft = gui.updateScreenPosition(
+                                            widthTooNarrow,
+                                            screen.width,
+                                            screen.xSize
+                                        )
+                                    }
                                 }
                             } catch (e: IllegalAccessException) {
                                 e.printStackTrace()
                             }
                         }
                     }
-                    clazz = clazz.getSuperclass()
+                    clazz = clazz.superclass
                 }
             }
         }
