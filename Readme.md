@@ -1,5 +1,7 @@
 # No Recipe Book
 
+This is the **unofficial** version for MCJE 1.16.4.
+
 ## Overview
 
 **No Recipe Book** removes the Recipe Book icon from the player inventory and the crafting GUI, as well as from other GUIs that have it.
